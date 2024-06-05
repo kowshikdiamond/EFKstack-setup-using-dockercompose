@@ -1,0 +1,19 @@
+name: test-logging
+services:
+  app-1:
+    image: alpine
+    command: sh -c 'while true; do echo "Hello from app-1"; sleep 1; done'
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: localhost:24224
+        tag: "app1-logs"
+  
+  app-2:
+    image: alpine
+    command: sh -c 'while true; do echo "Hello from app-2"; sleep 1; done'
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: localhost:24224
+        tag: app2-logs
